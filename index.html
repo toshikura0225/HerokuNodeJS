@@ -52,12 +52,12 @@ function kick(msg)
 	
 	if(flag)
 	{
-		send("");	// HIGH
+		send("/GPIO/4/value/1");	// HIGH
 		flag = false;
 	}
 	else
 	{
-		send("");	// LOW
+		send("/GPIO/4/value/0");	// LOW
 		flag = true;
 	}
 }
