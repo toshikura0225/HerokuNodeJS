@@ -16,8 +16,14 @@ $(function() {
   });
   socket.on('msg', function(data) {
     $('div').prepend(data + '<br>');
+	kick(data);
   });
 });
+
+function kick(msg)
+{
+	alert(msg);
+}
 
 function func01()
 {
@@ -29,6 +35,7 @@ function func01()
 <body>
 <form><input></form><div></div>
 
-<input type="button" value="manual" onclick="func01()"/>
+<br />
+<button type="button" onclick="func01()">テスト１</button>
 </body>
 </html>
