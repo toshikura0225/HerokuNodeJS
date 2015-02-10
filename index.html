@@ -26,11 +26,12 @@ $(function() {
 	
 });
 
+
 function send(msg)
 {
 	$.ajax({
 		type: 'POST',
-		url: "index.html",
+		url: msg,
 
 		success: function(data, textStatus){
 		  // 成功したとき
@@ -39,13 +40,26 @@ function send(msg)
 		},
 		error: function(xhr, textStatus, errorThrown){
 		  // エラー処理
+		  alert("error");
 		}
 	});
 }
 
+var flag = true;
 function kick(msg)
 {
-	send("abc");
+	send("index.html");
+	
+	if(flag)
+	{
+		send("");	// HIGH
+		flag = false;
+	}
+	else
+	{
+		send("");	// LOW
+		flag = true;
+	}
 }
 
 </script>
