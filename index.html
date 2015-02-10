@@ -1,9 +1,12 @@
 ﻿<!DOCTYPE html>
+<html>
+<head>
 <meta charset="UTF-8">
-<title>chat 150211</title>
+<title>chat Apple 150211</title>
 <script src="/socket.io/socket.io.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
+
 $(function() {
   var socket = io.connect();
   $('form').submit(function() {
@@ -15,5 +18,17 @@ $(function() {
     $('div').prepend(data + '<br>');
   });
 });
+
+function func01()
+{
+	alert("OK");
+}
 </script>
+
+</head>
+<body>
 <form><input></form><div></div>
+
+<input type="button" value="manual" onclick="func01()"/>
+</body>
+</html>
