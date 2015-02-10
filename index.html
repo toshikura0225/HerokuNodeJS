@@ -8,27 +8,46 @@
 <script>
 
 $(function() {
-  var socket = io.connect();
-  $('form').submit(function() {
-    socket.emit('msg', $('input').val());
-    $('input').val('');
-    return false;
-  });
-  socket.on('msg', function(data) {
-    $('div').prepend(data + '<br>');
-	kick(data);
-  });
+
+	$('#button1').click(function(){
+		alert("click");
+	});
+	
+	var socket = io.connect();
+	$('form').submit(function() {
+		socket.emit('msg', $('input').val());
+		$('input').val('');
+		return false;
+	});
+	socket.on('msg', function(data) {
+		$('div').prepend(data + '<br>');
+		kick(data);
+	});
+	
 });
+
+function send(msg)
+{
+	$.ajax({
+		type: 'POST',
+		url: "index.html",
+
+		success: function(data, textStatus){
+		  // 成功したとき
+		  // data にサーバーから返された html が入る
+		  alert(data);
+		},
+		error: function(xhr, textStatus, errorThrown){
+		  // エラー処理
+		}
+	});
+}
 
 function kick(msg)
 {
-	alert(msg);
+	send("abc");
 }
 
-function func01()
-{
-	alert("OK");
-}
 </script>
 
 </head>
@@ -36,6 +55,6 @@ function func01()
 <form><input></form><div></div>
 
 <br />
-<button type="button" onclick="func01()">テスト１</button>
+<button type="button" id="button1">テスト１</button>
 </body>
 </html>
