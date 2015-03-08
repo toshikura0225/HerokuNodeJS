@@ -1,1 +1,0 @@
-git clone https://git.heroku.com/toshikura.git
