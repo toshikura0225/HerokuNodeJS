@@ -1,4 +1,4 @@
-﻿var fs = require('fs');
+var fs = require('fs');
 var app = require('http').createServer(function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.end(fs.readFileSync('index.html'));  
