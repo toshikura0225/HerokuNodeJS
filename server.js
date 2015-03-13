@@ -11,7 +11,7 @@ var app = http.createServer(function(req, res) {
 	
 	console.log(url_parts.pathname);
 	
-	if()url_parts.pathname == '/index.html')
+	if(url_parts.pathname == '/index.html')
 	{
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write(http_src);
