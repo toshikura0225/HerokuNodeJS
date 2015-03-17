@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>rasp</title>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="./js/my_script.js"></script>
+<script type="text/javascript">
+	function received(tag, data)
+	{
+		alert(data);
+	}
+</script>
+</head>
+<body>
+<form><input></form><div></div>
+
+<button onclick="send('ando.html')">send</button>
+</body>
+</html>

@@ -1,6 +1,6 @@
 $(function() {
 
-	var socket = io.connect();
+	socket = io.connect();
 	$('form').submit(function() {
 		socket.emit('msg', $('input').val());
 		$('input').val('');
@@ -8,13 +8,17 @@ $(function() {
 	});
 	socket.on('msg', function(data) {
 		$('div').prepend(data + '<br>');
+		received('msg', data);
 	});
 	
 });
 
+var socket;
 
 function send(msg)
 {
+	socket.emit('msg', msg);
+	/*
 	$.ajax({
 		type: 'POST',
 		url: msg,
@@ -29,4 +33,5 @@ function send(msg)
 		  alert("error");
 		}
 	});
+	*/
 }
