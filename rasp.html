@@ -10,11 +10,24 @@
 	function received(tag, data)
 	{
 		$('div').prepend(data + '<br>');
+		
+			$.ajax({
+				type: 'POST',
+				url: data,
+
+				success: function(data, textStatus){
+				  //console.log(data);
+				},
+				error: function(xhr, textStatus, errorThrown){
+				  // エラー処理
+				  console.log(textStatus);
+				}
+			});
 	}
 </script>
 </head>
 <body>
-<button onclick="send('ando.html')">send</button>
+<button onclick="alert('何もしない')">send</button>
 <div></div>
 
 </body>

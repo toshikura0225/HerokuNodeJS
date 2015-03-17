@@ -1,23 +1,16 @@
 
 var socket;
 $(function() {
-
 	socket = io.connect();
-	$('form').submit(function() {
-		socket.emit('msg', $('input').val());
-		$('input').val('');
-		return false;
-	});
 	socket.on('msg', function(data) {
 		received('msg', data);
 	});
-	
 });
 
 
-function send(msg)
+function send(url)
 {
-	socket.emit('msg', msg);
+	socket.emit('msg', url);
 	/*
 	$.ajax({
 		type: 'POST',
