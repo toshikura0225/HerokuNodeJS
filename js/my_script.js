@@ -1,3 +1,5 @@
+
+var socket;
 $(function() {
 
 	socket = io.connect();
@@ -7,13 +9,11 @@ $(function() {
 		return false;
 	});
 	socket.on('msg', function(data) {
-		$('div').prepend(data + '<br>');
 		received('msg', data);
 	});
 	
 });
 
-var socket;
 
 function send(msg)
 {

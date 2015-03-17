@@ -9,13 +9,13 @@
 <script type="text/javascript">
 	function received(tag, data)
 	{
-		alert(data);
+		$('div').prepend(data + '<br>');
 	}
 </script>
 </head>
 <body>
-<form><input></form><div></div>
-
 <button onclick="send('ando.html')">send</button>
+<div></div>
+
 </body>
 </html>
