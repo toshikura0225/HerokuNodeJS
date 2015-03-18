@@ -1,2 +1,11 @@
-・.htmlファイル内のJavaScriptを.jsファイル内に移動させたいが、
-エラーが発生してしまう。
+<Android>
+・.htmlからRaspberry Piに届くことを確認する
+
+<Raspberry Pi>
+・GPIOが.htmlから正常にHIGH-LOWすることを確認する
+・2,3ピンとArduinoの2,3ピンとをハード的に接続する
+
+<Arduino>
+・エアコンのON/OFFデータを取得する
+・2,3ピンの状態から4,5ピンへIR出力することを確認する
+・2,3をRaspberry Piへ、4,5ピンにIR_LEDを接続。その他、補助道具を回路に実装する。
