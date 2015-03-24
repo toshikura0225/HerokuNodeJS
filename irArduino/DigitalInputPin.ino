@@ -1,64 +1,61 @@
 #include "DigitalInputPin.h"
 
-#define KEEPING_TIMER 10
-
 DigitalInputPin::DigitalInputPin(int argNumber)
 {
-	(*this).pinNumber = argNumber;
-	(*this).keepingTimer = 10;
-        pinMode(pinNumber, INPUT_PULLUP);
+	(*this).init(argNumber,100);
 }
 
-DigitalInputPin::DigitalInputPin(int argNumber, int argTimer)
+DigitalInputPin::DigitalInputPin(int argNumber, int argKeepingConstant)
+{
+	(*this).init(argNumber, argKeepingConstant);
+}
+
+void DigitalInputPin::init(int argNumber, int argKeepingConstant)
 {
 	(*this).pinNumber = argNumber;
-	(*this).keepingTimer = argTimer;
-        pinMode(pinNumber, INPUT_PULLUP);
+	(*this).keepingConstant = argKeepingConstant;
+	pinMode(pinNumber, INPUT_PULLUP);
+	(*this).keepingCount = 0;
+	(*this).keepingState = digitalRead((*this).pinNumber);
+	(*this).preKeepingState = (*this).keepingState;		// 前回の状態
 }
-
 
 int DigitalInputPin::GetState()
 {
-  // digitalRead((*this).pinNumber);
-  static int keepingCount = 0;		// 状態が連続して安定した回数を
-  static int preState = digitalRead((*this).pinNumber);		// 前回の状態
-  static int keepingState = preState;
   int currentState = digitalRead((*this).pinNumber);	// 今回測定分の状態
   
   // 状態が連続して安定した回数をインクリメント
-  if (preState == currentState)
+  if ((*this).keepingState != currentState)
   {
-	  keepingCount++;
+      (*this).keepingCount++;
 
       // 閾値を超えたら状態変更とする
-      if (keepingCount >=(*this).keepingTimer)
+      if ((*this).keepingCount >=(*this).keepingConstant)
       {
-              keepingState = currentState;
-    	  keepingCount = (*this).keepingTimer;
+			(*this).keepingState = currentState;
+			(*this).keepingCount = (*this).keepingConstant;
       }
   }
   else
   {
-	  keepingCount = 0;
+	  (*this).keepingCount = 0;
   }
-
   
-  preState = currentState;
-  
-  return keepingState;
+  return (*this).keepingState;
 }
 
 // ピンの状態が変更となったら変更になった状態を返す。
 // 変更がない場合は-1を返す
 int DigitalInputPin::IsShifted()
 {
-	static int preState = digitalRead((*this).pinNumber);
-	int currentState = (*this).GetState();
-	int retValue = -1;
-	if (preState != currentState)
+  int retValue = -1;
+  
+	if ((*this).preKeepingState != (*this).GetState())
 	{
-		retValue = currentState;
+		retValue = (*this).keepingState;
 	}
-	preState = currentState;
+  
+  (*this).preKeepingState = (*this).keepingState;
+
 	return retValue;
 }

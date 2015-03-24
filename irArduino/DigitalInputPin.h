@@ -6,14 +6,18 @@ class DigitalInputPin
 {
 	public:
 		DigitalInputPin(int argNumber);
-		DigitalInputPin(int argNumber, int argTimer);
+		DigitalInputPin(int argNumber, int argKeepingConstant);
 		int GetState();
 		int IsShifted();
-		int IsShifted(int keepingTimer);
+		int IsShifted(int argKeepingConstant);
 		
 	protected:
 		int pinNumber;
-		int keepingTimer;
+		int keepingConstant;
+		int keepingCount;
+		int keepingState;
+		int preKeepingState;
+		void init(int argNumber, int argKeepingConstant);
 };
 
 #endif
