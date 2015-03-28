@@ -12,12 +12,20 @@
 	{
 		$('div').prepend(data + '<br>');
 	}
+	
+	function sendSignal(pinNumber)
+	{
+		var url = "http://127.0.0.1:8000/GPIO/" + pinNumber+ "/value/";
+		
+		send(url + "1");
+		send(url + "0");
+	}
 </script>
 
 </head>
 <body>
-<button onclick="send('http://127.0.0.1:8000/GPIO/4/value/1')">HIGH</button>
-<button onclick="send('http://127.0.0.1:8000/GPIO/4/value/0')">LOW</button>
+<button onclick="sendSignal(2)">ON</button>
+<button onclick="sendSignal(3)">LOW</button>
 <div></div>
 </body>
 </html>
