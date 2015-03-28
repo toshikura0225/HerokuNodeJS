@@ -1,7 +1,7 @@
 #include "DigitalInputPin.h"
 
-DigitalInputPin readPinON(2);
-DigitalInputPin readPinOFF(3);
+DigitalInputPin readPinON(2, 5000);
+DigitalInputPin readPinOFF(3, 5000);
 
 int ledPin = 13, ledCount = 0, SPEED = 10000;
 
