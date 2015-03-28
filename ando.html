@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>ando</title>
+<title>遠隔操作側ソース 150328</title>
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="./js/my_script.js"></script>
@@ -13,19 +13,22 @@
 		$('div').prepend(data + '<br>');
 	}
 	
+	// 引数に指定したPINをいったんHIGHにしてすぐにOFFする
 	function sendSignal(pinNumber)
 	{
 		var url = "http://127.0.0.1:8000/GPIO/" + pinNumber+ "/value/";
 		
 		send(url + "1");
-		send(url + "0");
+		
+		setTimeout( function() {  send(url + "0"); }, 3000);
+		
 	}
 </script>
 
 </head>
 <body>
 <button onclick="sendSignal(2)">ON</button>
-<button onclick="sendSignal(3)">LOW</button>
+<button onclick="sendSignal(3)">OFF</button>
 <div></div>
 </body>
 </html>
