@@ -6,11 +6,21 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="./js/my_script.js"></script>
+<script type="text/javascript" src="/webiopi.js"></script>
 <script type="text/javascript">
 	function received(tag, data)
 	{
 		$('div').prepend(data + '<br>');
 		
+		 webiopi().ready(function() {
+                // Create a "Light" labeled button for GPIO 23
+                var lightButton = webiopi().createButton("lightButton", "Light On", function(){
+                    webiopi().callMacro("lightOn", 0, callbackGetChValue );
+                });
+
+                
+        });
+		/*
 			$.ajax({
 				type: 'POST',
 				url: data,
@@ -23,6 +33,19 @@
 				  console.log(textStatus);
 				}
 			});
+			*/
+	}
+	
+	 function callbackGetChValue( macro, args, data )
+	{
+		if( 0 == args )
+		{
+			//document.getElementById("div_ch0").innerHTML = data;
+		}
+		if( 1 == args )
+		{
+			//document.getElementById("div_ch1").innerHTML = data;
+		}
 	}
 </script>
 </head>
