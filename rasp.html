@@ -12,14 +12,14 @@
 	{
 		$('div').prepend(data + '<br>');
 		
-		 webiopi().ready(function() {
+		 //webiopi().ready(function() {
                 // Create a "Light" labeled button for GPIO 23
-                var lightButton = webiopi().createButton("lightButton", "Light On", function(){
-                    webiopi().callMacro("lightOn", 0, callbackGetChValue );
-                });
+                //var lightButton = webiopi().createButton("lightButton", "Light On", function(){
+        webiopi().callMacro("serialWrite", data, serialReceived );
+                //});
 
                 
-        });
+        //});
 		/*
 			$.ajax({
 				type: 'POST',
@@ -36,16 +36,19 @@
 			*/
 	}
 	
-	 function callbackGetChValue( macro, args, data )
+	 function serialReceived( macro, args, data )
 	{
+		/*
 		if( 0 == args )
 		{
-			//document.getElementById("div_ch0").innerHTML = data;
+			document.getElementById("div_ch0").innerHTML = data;
 		}
 		if( 1 == args )
 		{
-			//document.getElementById("div_ch1").innerHTML = data;
+			document.getElementById("div_ch1").innerHTML = data;
 		}
+		*/
+		send(data);	// 送信
 	}
 </script>
 </head>
