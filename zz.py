@@ -28,3 +28,10 @@ for var in data:
 	print("%s" % str(var))
 	f.write("var=" + str(var))
 f.close()
+
+@webiopi.macro
+def serialWrite( data ):
+	#webiopi.debug( "ChangeSpeed : %s" % (speed) )
+	#global g_speed
+	#g_speed = int(speed)
+	return [10, 20, 30, 40, 50]
