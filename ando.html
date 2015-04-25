@@ -16,17 +16,11 @@
 		}
 		
 		// 引数に指定したPINをいったんHIGHにしてすぐにOFFする
-		function sendSignal(pinNumber)
+		function sendSignal()
 		{
-			/*
-			var url = "http://127.0.0.1:8000/GPIO/" + pinNumber+ "/value/";
-			
-			send(url + "1");
-			
-			setTimeout( function() {  send(url + "0"); }, 3000);
-			*/
-			
-			
+			// 配列形式で送信する
+			 var url = [50,51,52];
+			send(url);
 		}
 	</script>
 	<style type="text/css">
@@ -65,9 +59,9 @@
 	</style>
 </head>
 <body>
-	<button id="idON" onclick="sendSignal(2)">ON</button>
+	<button id="idON" onclick="sendSignal()">ON</button>
 	<div id="idSpace">　</div>
-	<button id="idOFF" onclick="sendSignal(3)">OFF</button>
+	<button id="idOFF" onclick="sendSignal()">OFF</button>
 	<div id="idReceived"></div>
 </body>
 </html>
