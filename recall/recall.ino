@@ -19,9 +19,20 @@ int count = 0;
 void loop() {
     
 if (Serial.available() > 0) { // 受信したデータが存在する
-		incomingByte = Serial.read(); // 受信データを読み込む
+		int incomingByte = Serial.read(); // 受信データを読み込む
 
 		 Serial.write(incomingByte); // 1バイトのデータ(45)を送信
 	}
+    
+    
+    if (count == 0)
+    {
+        digitalWrite(led, HIGH);
+    }
+    else if (count >= 1000)
+    {
+        digitalWrite(led, LOW);
+        count = -1000;
+    }
     count++;
 }
