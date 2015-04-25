@@ -29,10 +29,10 @@ if (Serial.available() > 0) { // 受信したデータが存在する
     {
         digitalWrite(led, HIGH);
     }
-    else if (count >= 1000)
+    else if (count >= 10000)
     {
         digitalWrite(led, LOW);
-        count = -1000;
+        count = -10000;
     }
     count++;
 }
