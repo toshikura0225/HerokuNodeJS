@@ -12,7 +12,8 @@
 		// 
 		function received(tag, data)
 		{
-			$('#idReceived').prepend(data + '<br>');
+			//$('#idReceived').prepend(data + '<br>');
+			alert(data);
 		}
 		
 		// 引数に指定したPINをいったんHIGHにしてすぐにOFFする
@@ -63,5 +64,6 @@
 	<div id="idSpace">　</div>
 	<button id="idOFF" onclick="sendSignal()">OFF</button>
 	<div id="idReceived"></div>
+	
 </body>
 </html>
