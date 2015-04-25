@@ -11,7 +11,7 @@ com = Serial(
   timeout=1,
   xonxoff=0,
   rtscts=0,
-  writeTimeout=None,
+  writeTimeout=1000,
   dsrdtr=None)
 print(com.portstr)
 com.write(b"\x04")
