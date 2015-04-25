@@ -12,48 +12,19 @@
 	{
 		$('div').prepend(data + '<br>');
 		
-		 //webiopi().ready(function() {
-                // Create a "Light" labeled button for GPIO 23
-                //var lightButton = webiopi().createButton("lightButton", "Light On", function(){
+		// 受信したデータをそのままpythonに渡す
         webiopi().callMacro("serialWrite", data, serialReceived );
-                //});
-
-                
-        //});
-		/*
-			$.ajax({
-				type: 'POST',
-				url: data,
-
-				success: function(data, textStatus){
-				  //console.log(data);
-				},
-				error: function(xhr, textStatus, errorThrown){
-				  // エラー処理
-				  console.log(textStatus);
-				}
-			});
-			*/
 	}
 	
 	 function serialReceived( macro, args, data )
 	{
-		/*
-		if( 0 == args )
-		{
-			document.getElementById("div_ch0").innerHTML = data;
-		}
-		if( 1 == args )
-		{
-			document.getElementById("div_ch1").innerHTML = data;
-		}
-		*/
+		// pythonからの返り値をそのままNode.jsに返す
 		send(data);	// 送信
 	}
 </script>
 </head>
 <body>
-<button onclick="alert('何もしない')">send</button>
+<button onclick="alert('何もしない')">何もしない</button>
 <div></div>
 
 </body>
