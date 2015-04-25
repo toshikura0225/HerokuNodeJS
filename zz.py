@@ -27,15 +27,16 @@ def serialWrite( sendData ):
 	#com.write("00ZZ")
 	#com.write(b"\x05")
 	
-	data = com.read(1000)
-	print(len(data))
+	readData = com.read(1000)
+	print(len(readData))
 	
 	com.close()
 	
 	f = open("data.txt", "w")
-	for var in data:
+	for var in readData:
 		print("%s" % str(var))
 		f.write("var=" + str(var))
 	f.close()
 	
-	return [10, 20, 30, 40, 50]
+	#return [10, 20, 30, 40, 50]
+	return readData
