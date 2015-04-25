@@ -2,7 +2,7 @@
 
 from serial import Serial
 
-
+serialWrite( [10, 20, 30, 40, 50]);
 
 @webiopi.macro
 def serialWrite( sendData ):
