@@ -14,7 +14,7 @@
 		$('div').prepend(data + '<br>');
 		
 		// 受信したデータをそのままpythonに渡す
-        //webiopi().callMacro("serialWrite", data, serialReceived );
+        webiopi().callMacro("serialWrite", data, serialReceived );
 	}
 	
 	 function serialReceived( macro, args, data )
