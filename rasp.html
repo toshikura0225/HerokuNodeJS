@@ -10,6 +10,7 @@
 <script type="text/javascript">
 	function received(tag, data)
 	{
+		alert("receive");
 		$('div').prepend(data + '<br>');
 		
 		// 受信したデータをそのままpythonに渡す

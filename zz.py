@@ -1,14 +1,15 @@
 # header comment
 
 from serial import Serial
+import webiopi
 
-serialWrite( [10, 20, 30, 40, 50]);
 
 @webiopi.macro
 def serialWrite( sendData ):
-	
+	webiopi.setDebug()
+	webiopi.debug("came")
 	com = Serial(
-		port="/dev/ttyUSB0",
+		port="/dev/ttyACM0",
 		baudrate=9600,
 		bytesize=8,
 		parity='N',
@@ -20,15 +21,15 @@ def serialWrite( sendData ):
 		dsrdtr=None)
 	print(com.portstr)
 	
-	for b in sendData:
-	 	com.write(b)
-	
+	for bt in sendData:
+		com.write(bytes([bt]))	
+	#com.write(sendData)
 	#com.write(b"\x04")
 	#com.write("00ZZ")
 	#com.write(b"\x05")
 	
 	readData = com.read(1000)
-	print(len(readData))
+	#print(len(readData))
 	
 	com.close()
 	
@@ -40,3 +41,6 @@ def serialWrite( sendData ):
 	
 	#return [10, 20, 30, 40, 50]
 	return readData
+
+#abc = [10, 20, 30, 40, 50]
+#serialWrite(abc)
