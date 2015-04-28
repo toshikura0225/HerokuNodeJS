@@ -15,8 +15,14 @@
 		
 		// 受信したデータをそのままpythonに渡す
         //webiopi().callMacro("serialWrite", data, serialReceived );
-        webiopi().callMacro("serialWrite", 1234, serialReceived );
-	}
+        //webiopi().callMacro("serialWrite", 1234, serialReceived );
+        
+        $.post("http://127.0.0.1:8000/macros/serialReceived/1234", function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    	});
+        
+        
+	} 
 	
 	 function serialReceived( macro, args, data )
 	{

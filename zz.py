@@ -8,6 +8,10 @@ import webiopi
 def serialWrite( sendData ):
 	webiopi.setDebug()
 	webiopi.debug("came")
+	f = open("data.txt", "w")
+	f.write("var=9876")
+	f.close()
+
 	return 4321
 	
 	com = Serial(
