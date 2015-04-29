@@ -11,9 +11,9 @@ def serialWrite( sendData ):
 	f = open("data.txt", "w")
 	f.write("var=9876")
 	f.close()
-
-	return 4321
-	
+	abc = 4321
+	return abc
+def abc(sendData):
 	com = Serial(
 		port="/dev/ttyACM0",
 		baudrate=9600,
