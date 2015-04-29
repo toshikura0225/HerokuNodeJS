@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	function received(tag, data)
 	{
-		alert("receive");
+		//alert("receive");
 		$('div').prepend(data + '<br>');
 		
 		// 受信したデータをそのままpythonに渡す
@@ -21,9 +21,22 @@
         alert("Data");
     	});
         */
-	$.get("http://www.yahoo.co.jp/", "", function(data){
-        alert("Data");
-    	});
+	$.ajax({
+				type: 'POST',
+				url: 'http://www.yahoo.co.jp/index.html',
+
+				success: function(data, textStatus){
+				  //console.log(data);
+					alert('OK');
+				},
+				error: function(xhr, textStatus, errorThrown){
+				  // エラー処理
+				  console.log(textStatus);
+alert(xhr.status);
+				}
+			});
+
+	
         
 	} 
 	
