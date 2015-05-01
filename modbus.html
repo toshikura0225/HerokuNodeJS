@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>modbus dummy INV</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+	function md(text)
+	{
+		alert(text);
+	}
+	
+	function asd()
+	{
+		//$('#idFrame')[0].contentWindow.fr();
+		$('#idFrame')[0].contentWindow.fr();
+	}
+
+</script>
+</head>
+<body>
+
+<div></div>
+
+<button type="button" onclick="asd()">call iframe script</button>
+
+<iframe id="idFrame" src="iframe.html" height=300 width=300>
+</iframe>
+
+
+</body>
+</html>

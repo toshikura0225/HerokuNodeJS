@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>modbus dummy INV</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	function received(tag, data)
+	{		
+		
+	$.ajax({
+				type: 'GET',
+				url: 'index2.html',
+
+				success: function(data, textStatus){
+				  //console.log(data);
+					parent.md(data);
+				},
+				error: function(xhr, textStatus, errorThrown){
+				  // エラー処理
+				  console.log(textStatus);
+alert(xhr.status);
+				}
+			});
+
+	
+        
+	} 
+	
+	
+	function fr()
+	{
+		alert("iframe script");
+	}
+	
+	function abc()
+	{		
+		parent.md("ok");
+	}
+
+</script>
+</head>
+<body>
+	<button type="button" onclick="abc()">call parent script</button>
+<button onclick="received('何もしない','何もしない')">何もしない</button>
+<div></div>
+
+</body>
+</html>
