@@ -6,16 +6,24 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
 
-	function md(text)
+	function md(event)
 	{
-		alert(text);
+		alert(event.data);
 	}
 	
 	function asd()
 	{
 		//$('#idFrame')[0].contentWindow.fr();
-		$('#idFrame')[0].contentWindow.fr();
+		var win = $('#idFrame')[0].contentWindow;
+		win.postMessage("OK modbus", "http://www.geocities.jp");
 	}
+
+if(window.addEventListener){
+	addEventListener('message', md, false);
+}
+else{
+	attachEvent('onmessage', md);
+}
 
 </script>
 </head>

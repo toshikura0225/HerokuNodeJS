@@ -22,27 +22,30 @@
 alert(xhr.status);
 				}
 			});
-
-	
-        
 	} 
 	
+	if(window.addEventListener){
+		addEventListener('message', fr, false);
+	}
+	else{
+		attachEvent('onmessage', fr);
+	}
 	
-	function fr()
+	function fr(event)
 	{
-		alert("iframe script");
+		alert(event.data);
 	}
 	
 	function abc()
 	{		
-		parent.md("ok");
+		parent.postMessage("OK iframe", "");
 	}
 
 </script>
 </head>
 <body>
 	<button type="button" onclick="abc()">call parent script</button>
-<button onclick="received('何もしない','何もしない')">何もしない</button>
+<button onclick="received('何もしない','何もしない')">received</button>
 <div></div>
 
 </body>
