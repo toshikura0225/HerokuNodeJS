@@ -11,11 +11,20 @@
 		alert(event.data);
 	}
 	
-	function asd()
+	function received(arg1, arg2)
 	{
+		$('div').prepend(data + '<br>');
+		webiopi().callMacro("serialWrite", 1234, serialReceived );
 		//$('#idFrame')[0].contentWindow.fr();
+		
+	}
+	
+	function serialReceived( macro, args, data )
+	{
+		// pythonからの返り値をそのままNode.jsに返す
+		alert(data);
 		var win = $('#idFrame')[0].contentWindow;
-		win.postMessage("OK modbus", "http://www.geocities.jp");
+		win.postMessage(data, "http://www.geocities.jp");
 	}
 
 if(window.addEventListener){
@@ -31,7 +40,7 @@ else{
 
 <div></div>
 
-<button type="button" onclick="asd()">call iframe script</button>
+<button type="button" onclick="received('aaa','bbb')">call iframe script</button>
 
 <iframe id="idFrame" src="http://www.geocities.jp/t_kuramata/iframe.html" height=300 width=300>
 </iframe>
