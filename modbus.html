@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>modbus dummy INV</title>
+<script src="/socket.io/socket.io.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="./js/my_script.js"></script>
+<script type="text/javascript" src="http://127.0.0.1:8000/webiopi.js"></script>
 <script type="text/javascript">
 
 	function md(event)
@@ -13,7 +16,7 @@
 	
 	function received(arg1, arg2)
 	{
-		$('div').prepend(data + '<br>');
+		$('div').prepend(arg1 + '<br>');
 		webiopi().callMacro("serialWrite", 1234, serialReceived );
 		//$('#idFrame')[0].contentWindow.fr();
 		
@@ -22,7 +25,7 @@
 	function serialReceived( macro, args, data )
 	{
 		// pythonからの返り値をそのままNode.jsに返す
-		alert(data);
+		alert('abc' + data);
 		var win = $('#idFrame')[0].contentWindow;
 		win.postMessage(data, "http://www.geocities.jp");
 	}
