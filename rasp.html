@@ -32,6 +32,7 @@
 	// webiopi().callMacroのコールバック関数（RP→WEB）
 	function macroCallback( macro, args, data )
 	{
+		$('div').prepend(data + '<br/>');
 		// pythonからの返り値をそのままNode.jsに返す
 		$('#idFrame')[0].contentWindow.postMessage(data, HTML_DOMAIN);
 	}
@@ -41,14 +42,15 @@
 	{
 		webiopi().callMacro(MACRO_NAME, "abcde", macroCallback);
 	}
-	
+
 </script>
 </head>
 <body>
 	<button onclick="forDebug()">webiopi().callMacro(MACRO_NAME, "abcde", macroCallback);</button>
 	<br />
-	<iframe id="idFrame" src="http://denshi.herokuapp.com/iframe.html" height=300 width=300>
 	<div></div>
+	<iframe id="idFrame" src="http://denshi.herokuapp.com/iframe.html" height=300 width=300>
+	
 
 </body>
 </html>
