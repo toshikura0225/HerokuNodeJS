@@ -11,7 +11,7 @@
 	var MACRO_NAME = "serialWrite";
 	
 	// socket.ioを仕様するHTMLのドメイン名
-	var HTML_DOMAIN = "http://www.geocities.jp";
+	var HTML_DOMAIN = "http://denshi.herokuapp.com";
 	
 	// webiopiのloadイベント
 	webiopi().ready( function()
@@ -45,8 +45,9 @@
 </script>
 </head>
 <body>
-<button onclick="forDebug()">for debug</button>
-<div></div>
+	<button onclick="forDebug()">for debug</button>
+	<iframe id="idFrame" src="http://denshi.herokuapp.com/iframe.html" height=300 width=300>
+	<div></div>
 
 </body>
 </html>
