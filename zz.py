@@ -11,8 +11,7 @@ def serialWrite( sendData ):
 	f = open("data.txt", "w")
 	f.write(sendData)
 	f.close()
-	abc = "added_" + sendData
-	return abc
+	return 4444
 def abc(sendData):
 	com = Serial(
 		port="/dev/ttyACM0",
