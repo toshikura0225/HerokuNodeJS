@@ -3,52 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <title>rasp</title>
-<script src="/socket.io/socket.io.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="./js/my_script.js"></script>
 <script type="text/javascript" src="http://127.0.0.1:8000/webiopi.js"></script>
 <script type="text/javascript">
-	function received(tag, data)
-	{
-		//alert("receive");
-		$('div').prepend(data + '<br>');
+	
+	// .pyのマクロ名
+	var MACRO_NAME = "serialWrite";
+	
+	// socket.ioを仕様するHTMLのドメイン名
+	var HTML_DOMAIN = "http://www.geocities.jp";
+	
+	// webiopiのloadイベント
+	webiopi().ready( function()
+	{	// Initialize
+		window.addEventListener('message', messageListener, false);	// postMessageされた
 		
-		// 受信したデータをそのままpythonに渡す
-        //webiopi().callMacro("serialWrite", data, serialReceived );
-        //webiopi().callMacro("serialWrite", 1234, serialReceived );
-        /*
-        $.post("http://127.0.0.1:8000/macros/serialWrite/1234", "", function(data){
-        alert("Data");
-    	});
-        */
-	$.ajax({
-				type: 'POST',
-				url: 'http://www.yahoo.co.jp/',
-
-				success: function(data, textStatus){
-				  //console.log(data);
-					alert('OK');
-				},
-				error: function(xhr, textStatus, errorThrown){
-				  // エラー処理
-				  console.log(textStatus);
-alert(xhr.status);
-				}
-			});
-
+		// else if(window.attachEvent)
+        	// ～ IE8
+			// window.attachEvent("onload", eventFunc);
+	});
 	
-        
-	} 
+	// postMessageイベントリスナー（WEB→RP）
+	function messageListener( event )
+	{
+		webiopi().callMacro(MACRO_NAME, event.data, macroCallback);
+	}
 	
-	 function serialReceived( macro, args, data )
+	// webiopi().callMacroのコールバック関数（RP→WEB）
+	function macroCallback( macro, args, data )
 	{
 		// pythonからの返り値をそのままNode.jsに返す
-		send(data);	// 送信
+		$('#idFrame')[0].contentWindow.postMessage(data, HTML_DOMAIN);
 	}
+	
+	// デバッグ用関数
+	function forDebug()
+	{
+		webiopi().callMacro(MACRO_NAME, "abcde", macroCallback);
+	}
+	
 </script>
 </head>
 <body>
-<button onclick="received('何もしない','何もしない')">何もしない</button>
+<button onclick="forDebug()">for debug</button>
 <div></div>
 
 </body>

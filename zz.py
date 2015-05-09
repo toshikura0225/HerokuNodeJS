@@ -9,9 +9,9 @@ def serialWrite( sendData ):
 	webiopi.setDebug()
 	webiopi.debug("came")
 	f = open("data.txt", "w")
-	f.write("var=9876")
+	f.write(sendData)
 	f.close()
-	abc = 4321
+	abc = "added_" + sendData
 	return abc
 def abc(sendData):
 	com = Serial(

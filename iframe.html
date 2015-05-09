@@ -3,49 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <title>modbus dummy INV</title>
+<script src="/socket.io/socket.io.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="./js/my_script.js"></script>
 <script type="text/javascript">
-	function received(tag, data)
-	{		
+	
+	var WebIOPi = "http://192.168.43.114:8000";
+	
+	// jQueryのreadyイベント
+	$(function(){
+    	
+		window.addEventListener('message', messageListener, false);	// postMessageされた
 		
-	$.ajax({
-				type: 'GET',
-				url: 'index2.html',
-
-				success: function(data, textStatus){
-				  //console.log(data);
-					parent.md(data);
-				},
-				error: function(xhr, textStatus, errorThrown){
-				  // エラー処理
-				  console.log(textStatus);
-alert(xhr.status);
-				}
-			});
-	} 
+		// else if(window.attachEvent)
+        	// ～ IE8
+			// window.attachEvent("onload", eventFunc);
+		
+	});
 	
-	if(window.addEventListener){
-		addEventListener('message', fr, false);
-	}
-	else{
-		attachEvent('onmessage', fr);
-	}
-	
-	function fr(event)
+	// postMessageイベントリスナー（RP→WEB）
+	function messageListener( event )
 	{
-		alert(event.data);
+		send( event.data );
 	}
 	
-	function abc()
-	{		
-		parent.postMessage("OK iframe", "http://192.168.43.114:8000");
+	// socket.ioから受信したデータをRPへ渡す（WEB→RP）
+	function received(tag, data)
+	{
+		window.parent.postMessage(data, WebIOPi);
 	}
-
+	
 </script>
 </head>
 <body>
-	<button type="button" onclick="abc()">call parent script</button>
-<button onclick="received('何もしない','何もしない')">received</button>
+	<button type="button" onclick="received('tagtagtag','datadatadata')">for debug</button>
 <div></div>
 
 </body>
