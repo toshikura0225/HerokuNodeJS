@@ -2,17 +2,14 @@
 
 from serial import Serial
 import webiopi
-
+import time
 
 @webiopi.macro
-def serialWrite( sendData ):
+def serialWrite( *sendData ):
 	webiopi.setDebug()
-	webiopi.debug("came")
-	f = open("data.txt", "w")
-	f.write(sendData)
-	f.close()
-	return "added_" + sendData
-def abc(sendData):
+	webiopi.debug("####################")
+
+	#ttyACM0
 	com = Serial(
 		port="/dev/ttyACM0",
 		baudrate=9600,
@@ -24,29 +21,35 @@ def abc(sendData):
 		rtscts=0,
 		writeTimeout=1000,
 		dsrdtr=None)
-	print(com.portstr)
-	
-	#for bt in sendData:
-	#	com.write(bytes([bt]))	
-
+	#print(com.portstr)
+	webiopi.debug(sendData)
+	webiopi.debug(com.portstr)
+	time.sleep(2)
+	for bt in sendData:
+		com.write(str(bt).encode())	
+	#com.write(bytes(sendData))
 	#com.write(sendData)
 	#com.write(b"\x04")
-	#com.write("00ZZ")
+	#com.write("asdfghj")
 	#com.write(b"\x05")
+	
+	
 	
 	readData = com.read(1000)
 	#print(len(readData))
-	
+	webiopi.debug(len(readData))
+
 	com.close()
 	
-	f = open("data.txt", "w")
-	for var in readData:
-		print("%s" % str(var))
-		f.write("var=" + str(var))
-	f.close()
+	#f = open("data.txt", "w")
+	#for var in readData:
+	#	print("%s" % str(var))
+	#	f.write("var=" + str(var))
+	#f.close()
 	
 	#return [10, 20, 30, 40, 50]
 	return readData
+	#return 123
 
 #abc = [10, 20, 30, 40, 50]
 #serialWrite(abc)
