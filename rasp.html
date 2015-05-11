@@ -36,6 +36,11 @@
 	function macroCallback( macro, args, data )
 	{
 		$('div').prepend(data + '<br/>');
+		var numArray = [];
+		data.split(',').forEach( function (str)
+		{
+			numArray.push(parseInt(str));
+		});
 		// pythonからの返り値をそのままNode.jsに返す
 		$('#idFrame')[0].contentWindow.postMessage(data, HTML_DOMAIN);
 	}

@@ -3,6 +3,7 @@
 from serial import Serial
 import webiopi
 import time
+import numpy as np
 
 @webiopi.macro
 def serialWrite( *sendData ):
@@ -26,7 +27,8 @@ def serialWrite( *sendData ):
 	webiopi.debug(com.portstr)
 	time.sleep(2)
 	for bt in sendData:
-		com.write(str(bt).encode())	
+		#com.write(str(bt).encode())
+		com.write(bytes(chr(int(bt)).encode()))	
 	#com.write(bytes(sendData))
 	#com.write(sendData)
 	#com.write(b"\x04")
@@ -46,9 +48,11 @@ def serialWrite( *sendData ):
 	#	print("%s" % str(var))
 	#	f.write("var=" + str(var))
 	#f.close()
-	
+	webiopi.debug(sendData)
 	#return [10, 20, 30, 40, 50]
-	return readData
+	#return readData
+	return ','.join(str(n) for n in readData)
+	#return np.array(readData)
 	#return 123
 
 #abc = [10, 20, 30, 40, 50]
