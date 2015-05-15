@@ -1,4 +1,4 @@
-ß<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -17,15 +17,17 @@
 			//alert(data);
 		}
 		
-		// send message
-		function sendSignal()
+		// 引数に指定したPINをいったんHIGHにしてすぐにOFFする
+		function sendSignal(pinNumber)
 		{
-			// 配列形式で送信する
-			var url = [4, 48, 48, 90, 90, 5];
+			var url = "http://127.0.0.1:8000/GPIO/" + pinNumber+ "/value/";
 			
-			//var url = "andooooo";
-			send(url);
+			send(url + "1");
+			
+			setTimeout( function() {  send(url + "0"); }, 3000);
+			
 		}
+			
 	</script>
 	<style type="text/css">
 	body
@@ -63,9 +65,9 @@
 	</style>
 </head>
 <body>
-	<button id="idON" onclick="sendSignal()"> sendSignal() </button>
-	<div id="idSpace">　</div>
-	<button id="idOFF" onclick="sendSignal()"> sendSignal() </button>
+	<button id="idON" onclick="sendSignal(2)"> sendSignal() </button>
+	<div id="idSpace"></div>
+	<button id="idOFF" onclick="sendSignal(3)"> sendSignal() </button>
 	<div id="idReceived"></div>
 	
 </body>
