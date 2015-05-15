@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ß<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -9,21 +9,22 @@
 	<script src="./js/my_script.js"></script>
 
 	<script type="text/javascript">
-		// 
+		
+		// socket.io message received
 		function received(tag, data)
 		{
 			$('#idReceived').prepend(data + '<br>');
+			//alert(data);
 		}
 		
-		// 引数に指定したPINをいったんHIGHにしてすぐにOFFする
-		function sendSignal(pinNumber)
+		// send message
+		function sendSignal()
 		{
-			var url = "http://127.0.0.1:8000/GPIO/" + pinNumber+ "/value/";
+			// 配列形式で送信する
+			var url = [4, 48, 48, 90, 90, 5];
 			
-			send(url + "1");
-			
-			setTimeout( function() {  send(url + "0"); }, 3000);
-			
+			//var url = "andooooo";
+			send(url);
 		}
 	</script>
 	<style type="text/css">
@@ -62,9 +63,10 @@
 	</style>
 </head>
 <body>
-	<button id="idON" onclick="sendSignal(2)">ON</button>
+	<button id="idON" onclick="sendSignal()"> sendSignal() </button>
 	<div id="idSpace">　</div>
-	<button id="idOFF" onclick="sendSignal(3)">OFF</button>
+	<button id="idOFF" onclick="sendSignal()"> sendSignal() </button>
 	<div id="idReceived"></div>
+	
 </body>
 </html>
