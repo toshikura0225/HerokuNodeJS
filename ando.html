@@ -20,6 +20,8 @@
 		// 引数に指定したPINをいったんHIGHにしてすぐにOFFする
 		function sendSignal(pinNumber)
 		{
+			send("http://127.0.0.1:8000/GPIO/" + pinNumber+ "/function/out" );
+			
 			var url = "http://127.0.0.1:8000/GPIO/" + pinNumber+ "/value/";
 			
 			send(url + "1");
