@@ -7,7 +7,7 @@ var js_src = fs.readFileSync('./js/my_script.js');
 
 var rasp_src= fs.readFileSync('./rasp.html');
 var ando_src= fs.readFileSync('./ando.html');
-
+var iframe_src= fs.readFileSync('./iframe.html');
 var app = http.createServer(function(req, res) {
 	
 	var url_parts = url.parse(req.url);
@@ -38,7 +38,12 @@ var app = http.createServer(function(req, res) {
 		res.write(ando_src);
 		res.end();
 	}
-	
+	 else if(url_parts.pathname == '/iframe.html')
+	{
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.write(iframe_src);
+		res.end();
+	}
 }).listen(process.env.PORT || 3000);
 
 var io = require('socket.io').listen(app);
