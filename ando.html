@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
-	<title>遠隔操作側ソース 150328</title>
+	<title>Air Conditioner Remote Controller</title>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -17,7 +17,8 @@
 			});
 			
 			socket.on('ok', function(data) {
-				$('#idReceived').prepend('OK');
+				//$('#idReceived').prepend('OK');
+				alert("Good !");
 			});
 		});
 		
@@ -75,22 +76,23 @@
 		#idON
 		{
 			float: left;
-			font-size: x-large;
-			width: 45%;
+			font-size: 30pt;
+			width: 20%;
 			height: 5em;
 		}
 		
 		#idSpace
 		{
 			float: left;
-			width: 10%;
+			width: 20%;
+			height: 5em;
 		}
 		
 		#idOFF
 		{
-			font-size: x-large;
+			font-size: 30pt;
 			float: left;
-			width:  45%;
+			width:  20%;
 			height: 5em;
 		}
 		
@@ -109,7 +111,7 @@
 			width: 100%;
 			margin: 0px auto;
 			text-align: center;
-			font-size:30pt;
+			font-size:25pt;
 		}
 	</style>
 </head>
@@ -118,11 +120,15 @@
 	<br/><br/>
 	<div id="description">Air Conditioner Remote Controller</div>
 	
-	<br/>
+	<br/><br/><br/>
+	<div id="idSpace"></div>
 	<button id="idON" onclick="sendSignal(2)"> ON </button>
 	<div id="idSpace"></div>
 	<button id="idOFF" onclick="sendSignal(3)"> OFF </button>
+	<div id="idSpace"></div>
 	<div id="idReceived"></div>
+	<br/><br/><br/>
+	<div id="band"></div>
 	
 </body>
 </html>
