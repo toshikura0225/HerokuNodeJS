@@ -17,8 +17,7 @@
 			});
 			
 			socket.on('ok', function(data) {
-				//$('#idReceived').prepend('OK');
-				alert("Good !");
+				$('#idReceived').prepend('OK');
 			});
 		});
 		
@@ -126,9 +125,10 @@
 	<div id="idSpace"></div>
 	<button id="idOFF" onclick="sendSignal(3)"> OFF </button>
 	 <div id="idSpace"></div>
-	<div id="idReceived"></div>
+	
 	<br/><br/><br/>
 	<div id="band"></div>
-	
+	<br/><br/><br/>
+	 <div id="idReceived"></div>
 </body>
 </html>
