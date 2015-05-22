@@ -38,10 +38,10 @@ var app = http.createServer(function(req, res) {
 		res.write(ando_src);
 		res.end();
 	}
-	 else if(url_parts.pathname == '/iframe.html')
+	else
 	{
-		res.writeHead(200, {'Content-Type': 'text/html'});
-		res.write(iframe_src);
+		res.writeHead(200);
+		res.write("Noooooooot found");
 		res.end();
 	}
 }).listen(process.env.PORT || 3000);
