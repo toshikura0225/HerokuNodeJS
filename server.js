@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+var path = require('path');
 
 var http_src = fs.readFileSync('./index.html');
 var js_src = fs.readFileSync('./js/my_script.js');
@@ -14,6 +15,20 @@ var app = http.createServer(function(req, res) {
 	
 	console.log(url_parts.pathname);
 	
+	if (path.existsSync("." + url_parts.pathname))
+	{ 
+		var src= fs.readFileSync("." + url_parts.pathname);
+		res.writeHead(200);
+		res.write(src);
+		res.end();
+	}
+	else
+	{
+		res.writeHead(200);
+		res.write("Nooooooooooot found!");
+		res.end();
+	}
+	/*
 	if(url_parts.pathname == '/')
 	{
 		res.writeHead(200, {'Content-Type': 'text/html'});
@@ -44,6 +59,7 @@ var app = http.createServer(function(req, res) {
 		res.write("Noooooooot found");
 		res.end();
 	}
+	*/
 }).listen(process.env.PORT || 3000);
 
 var io = require('socket.io').listen(app);
