@@ -7,7 +7,7 @@ var js_src = fs.readFileSync('./js/my_script.js');
 
 var rasp_src= fs.readFileSync('./rasp.html');
 var ando_src= fs.readFileSync('./ando.html');
-var iframe_src= fs.readFileSync('./iframe.html');
+
 var app = http.createServer(function(req, res) {
 	
 	var url_parts = url.parse(req.url);
