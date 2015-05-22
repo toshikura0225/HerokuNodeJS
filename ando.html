@@ -6,9 +6,42 @@
 	<title>遠隔操作側ソース 150328</title>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="./js/my_script.js"></script>
 
 	<script type="text/javascript">
+		
+		var socket;
+		$(function() {
+			socket = io.connect();
+			socket.on('msg', function(data) {
+				received('msg', data);
+			});
+			
+			socket.on('ok', function(data) {
+				$('#idReceived').prepend('OK');
+			});
+		});
+		
+		
+		function send(url)
+		{
+			socket.emit('msg', url);
+			/*
+			$.ajax({
+				type: 'POST',
+				url: msg,
+		
+				success: function(data, textStatus){
+				  // 成功したとき
+				  // data にサーバーから返された html が入る
+				  //alert(data);
+				},
+				error: function(xhr, textStatus, errorThrown){
+				  // エラー処理
+				  alert("error");
+				}
+			});
+			*/
+		}
 		
 		// socket.io message received
 		function received(tag, data)
@@ -32,37 +65,37 @@
 			
 	</script>
 	<style type="text/css">
-	body
-	{
-		margin: 7%;
-	}
-	
-	#idON
-	{
-		float: left;
-		font-size: x-large;
-		width: 45%;
-		height: 5em;
-	}
-	
-	#idSpace
-	{
-		float: left;
-		width: 10%;
-	}
-	
-	#idOFF
-	{
-		font-size: x-large;
-		float: left;
-		width:  45%;
-		height: 5em;
-	}
-	
-	#idReceived
-	{
-		clear: both;
-	}
+		body
+		{
+			margin: 7%;
+		}
+		
+		#idON
+		{
+			float: left;
+			font-size: x-large;
+			width: 45%;
+			height: 5em;
+		}
+		
+		#idSpace
+		{
+			float: left;
+			width: 10%;
+		}
+		
+		#idOFF
+		{
+			font-size: x-large;
+			float: left;
+			width:  45%;
+			height: 5em;
+		}
+		
+		#idReceived
+		{
+			clear: both;
+		}
 
 	</style>
 </head>

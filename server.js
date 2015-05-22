@@ -39,6 +39,12 @@ io.sockets.on('connection', function(socket)
 		socket.broadcast.emit('msg', data);
 	});
   
+	socket.on('ok', function(data)
+	{
+		//io.sockets.emit('msg', data);
+		socket.broadcast.emit('ok', data);
+	});
+  
 	socket.on('polling', function(data)
 	{
 		//io.sockets.emit('msg', data);

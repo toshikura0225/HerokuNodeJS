@@ -6,9 +6,38 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://127.0.0.1:8000/webiopi.js"></script>
-<script src="./js/my_script.js"></script>
+
 <script type="text/javascript">
 
+	var socket;
+	$(function() {
+		socket = io.connect();
+		socket.on('msg', function(data) {
+			received('msg', data);
+		});
+	});
+	
+	
+	function send(url)
+	{
+		socket.emit('msg', url);
+		/*
+		$.ajax({
+			type: 'POST',
+			url: msg,
+	
+			success: function(data, textStatus){
+			  // 成功したとき
+			  // data にサーバーから返された html が入る
+			  //alert(data);
+			},
+			error: function(xhr, textStatus, errorThrown){
+			  // エラー処理
+			  alert("error");
+			}
+		});
+		*/
+	}
 	// webiopiのloadイベント
 	webiopi().ready( function()
 	{	// Initialize
@@ -42,7 +71,7 @@
 		});
 		
 		// reply OK
-		send(argURL);
+		socket.emit('ok', url);
 	}
 
 </script>
