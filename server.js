@@ -20,7 +20,7 @@ var app = http.createServer(function(req, res) {
 	if(url_parts.pathname == '/')
 	{
 		res.writeHead(200, {'Content-Type': 'text/html'});
-		res.write("");
+		res.write(http_src);
 		res.end();
 	}
 	else  if (path.existsSync("." + url_parts.pathname))
