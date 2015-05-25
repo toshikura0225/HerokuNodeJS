@@ -77,14 +77,14 @@
 			float: left;
 			font-size: 30pt;
 			width: 35%;
-			height: 5em;
+			height: 100px;
 		}
 		
-		#idSpace
+		.idSpace
 		{
 			float: left;
-			width: 10%;
-			height: 5em;
+			width: 9%;
+			height: 100px;
 		}
 		
 		#idOFF
@@ -92,7 +92,7 @@
 			font-size: 30pt;
 			float: left;
 			width:  35%;
-			height: 5em;
+			height: 100px;
 		}
 		
 		#idReceived
@@ -108,27 +108,33 @@
 		.description
 		{
 			width: 100%;
+			height: 150px;
 			margin: 0px auto;
 			text-align: center;
 			font-size:25pt;
+		}
+		.clsClearBoth
+		{
+			clear: both;
+		height: 100px;
 		}
 	</style>
 </head>
 <body>
 	<div id="band"></div>
-	<br/><br/>
+	<br/><br/><br/><br/>
 	<div class="description">Air Conditioner<br/>Remote Controller</div>
 	
-	<br/><br/><br/>
-	<div id="idSpace"></div>
-	<button id="idON" onclick="sendSignal(2)"> ON </button>
-	<div id="idSpace"></div>
-	<button id="idOFF" onclick="sendSignal(3)"> OFF </button>
-	 <div id="idSpace"></div>
 	
-	<br/><br/><br/>
+	<div class="idSpace"></div>
+	<button id="idON" onclick="sendSignal(2)"> ON </button>
+	<div class="idSpace"></div>
+	<button id="idOFF" onclick="sendSignal(3)"> OFF </button>
+	 <div class="idSpace"></div>
+	<div class="clsClearBoth"></div>
+	
 	<div id="band"></div>
-	<br/><br/><br/>
+	
 	 <div id="idReceived"></div>
 </body>
 </html>
