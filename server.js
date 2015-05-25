@@ -3,8 +3,9 @@ var fs = require('fs');
 var url = require('url');
 var path = require('path');
 
-/*
+
 var http_src = fs.readFileSync('./index.html');
+/*
 var js_src = fs.readFileSync('./js/my_script.js');
 
 var rasp_src= fs.readFileSync('./rasp.html');
