@@ -3,19 +3,26 @@ var fs = require('fs');
 var url = require('url');
 var path = require('path');
 
+/*
 var http_src = fs.readFileSync('./index.html');
 var js_src = fs.readFileSync('./js/my_script.js');
 
 var rasp_src= fs.readFileSync('./rasp.html');
 var ando_src= fs.readFileSync('./ando.html');
-
+*/
 var app = http.createServer(function(req, res) {
 	
 	var url_parts = url.parse(req.url);
 	
 	console.log(url_parts.pathname);
 	
-	if (path.existsSync("." + url_parts.pathname))
+	if(url_parts.pathname == '/')
+	{
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.write("");
+		res.end();
+	}
+	else  if (path.existsSync("." + url_parts.pathname))
 	{ 
 		var src= fs.readFileSync("." + url_parts.pathname);
 		res.writeHead(200);
