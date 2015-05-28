@@ -9,9 +9,17 @@
 
 	<script type="text/javascript">
 		
-		var socket;
+		var socket = io.connect();
+		
+		socket.on('connect', function() { // 2
+  			log('connected');
+  				
+  			send("http://127.0.0.1:8000/GPIO/2/function/out");
+  			send("http://127.0.0.1:8000/GPIO/3/function/out");
+		});
+		
 		$(function() {
-			socket = io.connect();
+			
 			
 			socket.on('msg', function(data) {
 				received('msg', data);
@@ -21,12 +29,7 @@
 				$('#idReceived').prepend('○');
 			});
 				
-			socket.on('connect', function() { // 2
-  				log('connected');
-  				
-  				 send("http://127.0.0.1:8000/GPIO/2/function/out" );
-  				 send("http://127.0.0.1:8000/GPIO/3/function/out" );
-			});
+			
 		});
 		
 		
