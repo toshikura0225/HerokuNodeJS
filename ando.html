@@ -24,7 +24,8 @@
 			socket.on('connect', function() { // 2
   				log('connected');
   				
-  				
+  				 send("http://127.0.0.1:8000/GPIO/2/function/out" );
+  				 send("http://127.0.0.1:8000/GPIO/3/function/out" );
 			});
 		});
 		
@@ -60,7 +61,7 @@
 		// 引数に指定したPINをいったんHIGHにしてすぐにOFFする
 		function sendSignal(pinNumber)
 		{
-			send("http://127.0.0.1:8000/GPIO/" + pinNumber+ "/function/out" );
+			
 			
 			var url = "http://127.0.0.1:8000/GPIO/" + pinNumber+ "/value/";
 			
