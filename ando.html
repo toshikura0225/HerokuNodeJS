@@ -13,17 +13,18 @@
 		$(function() {
 			socket = io.connect();
 			
+			socket.on('msg', function(data) {
+				received('msg', data);
+			});
 			
+			socket.on('ok', function(data) {
+				$('#idReceived').prepend('○');
+			});
+				
 			socket.on('connect', function() { // 2
   				log('connected');
   				
-  				socket.on('msg', function(data) {
-					received('msg', data);
-				});
-			
-				socket.on('ok', function(data) {
-					$('#idReceived').prepend('○');
-				});
+  				
 			});
 		});
 		
