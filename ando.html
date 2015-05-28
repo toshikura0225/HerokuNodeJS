@@ -11,8 +11,8 @@
 		
 		var socket = io.connect();
 		
-		socket.on('connect', function() { // 2
-  			log('connected');
+		socket.on('connect', function()
+		{
   				
   			send("http://127.0.0.1:8000/GPIO/2/function/out");
   			send("http://127.0.0.1:8000/GPIO/3/function/out");
