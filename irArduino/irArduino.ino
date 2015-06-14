@@ -1,7 +1,7 @@
 #include "DigitalInputPin.h"
 
-DigitalInputPin readPinON(2, 5000);
-DigitalInputPin readPinOFF(3, 5000);
+DigitalInputPin readPinON(2, 50);
+DigitalInputPin readPinOFF(3, 50);
 
 int ledPin = 13;	// 動作中に点滅するLED
 int ledCount = 0, SPEED = 10000;

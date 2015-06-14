@@ -69,8 +69,8 @@
 			var url = "http://127.0.0.1:8000/GPIO/" + pinNumber+ "/value/";
 			
 			send(url + "1");
-			
-			setTimeout( function() {  send(url + "0"); }, 10000);
+			send(url + "0");
+			//setTimeout( function() {  send(url + "0"); }, 10000);
 			
 		}
 			
