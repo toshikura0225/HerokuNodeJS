@@ -1,1 +1,2 @@
 socket.ioの通信データをJSON形式とする方法
+my_scriptを参照のこと
